@@ -1,0 +1,64 @@
+<section class="home container-fluid">
+    
+<div class="container ">
+    <!-- Header -->
+    <h1 class="my-4">ICON SEARCH</h1>
+
+    <!-- Bar -->
+<div class="bar">
+   <div class="field row">
+        <input type="text" placeholder="Write something ..." class="col-5 ">
+        <div class="category col-5 ">
+            <a (click)="fetchData()">All field</a>
+            <a (click)="fetDataByCategory('T-shirt')">T-shirt</a>
+            <a (click)="fetDataByCategory('Shoes')">Shoes</a>
+            <a>Accessories</a>
+        </div>
+   </div>
+
+   <div class="icon">
+       <li class="fa fa-search"></li>
+   </div>
+
+</div>
+
+<!-- Content -->
+
+
+<div class="container mt-5">
+	<div class="row">
+	
+		<div class="col-md-4 style" *ngFor="let c of products">
+            <li class="fa fa-heart heart-style"></li>
+            <div class="profile-card-4 text-center">
+                <img src="{{url}}{{c.img}}" height="300px" class="img img-responsive">
+                <div class="profile-content">
+                    <div class="profile-name">{{c.name}}</div>
+                    <div class="profile-description">{{c.short_dscription}}</div>
+                    <div class="row">
+                        <div class="col-xs-4">
+                            <div class="profile-overview mr-4">
+                                <p>PRICE</p>
+                                <h4>{{c.price}} $</h4>
+                            </div>
+                        </div>
+                        <div class="col-4"></div>
+                        <div class="col-xs-4 my-auto ">
+                            <div class="profile-overview btn-card">
+                                <h5>ADD TO CART</h5>
+                            </div>
+                        </div>
+                    
+                    </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+</div>
+
+</section>
