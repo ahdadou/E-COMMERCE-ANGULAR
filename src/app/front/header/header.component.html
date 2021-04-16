@@ -72,10 +72,12 @@
                    <div class="dropdown-menu cart-drop dropdown-menu-right">
                     <div class="card-list" >
                       <!-- List Of Products -->
-                      <div class="card-products justify-content-center align-items-center  p-2 pl-3" *ngIf="data.products[0].qte !== 0" >
+                      <div class="card-products justify-content-center align-items-center  p-2 pl-3" *ngIf="data.products[0]?.qte !== 0 " >
                         <div class="row align-items-center " *ngFor="let item of data.products; let i = index">
-                          <i class="fas fa-close ml-0" style="cursor: pointer;" (click) = "cartServer.removeItem(i)"></i>
+                          <i class="fas fa-close ml-0" style="cursor: pointer;" (click) = "cartService.removeItem(i)"></i>
                           <img src="https://res.cloudinary.com/mhmd/image/upload/v1556485076/shoes-1_gthops.jpg" alt="" class="mx-3 " style="max-height: 20px;">
+                          <!-- <img src="{{url}}{{item.img}}" alt="" class="mx-3 " style="max-height: 20px;"> -->
+
                           <h4 style="font-size: 15px; font-weight: 800;">{{item.qte}} x {{item.product.price | currency:'USD'}}</h4>
                         </div>
                       </div>

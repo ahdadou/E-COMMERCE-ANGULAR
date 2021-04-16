@@ -10,6 +10,8 @@ import { CartFrontEnd } from 'src/app/models/Cart';
 export class HeaderComponent implements OnInit {
   data: CartFrontEnd;
   total: number;
+  url = 'http://localhost:8008/images/products/';
+
 
   constructor(private cartService: CartService) { }
 

@@ -19,6 +19,12 @@ export class ProductService {
   return this.http.get(this.URL_LO + 'all/products');
   }
 
+
+   // GET PRODUCT BY ID
+   getProductById(id): any{
+    return this.http.get(this.URL_LO + 'all/product/id/' + id);
+    }
+
   getProductByCategory(cat): any{
     return this.http.get(this.URL_LO + 'all/product/category/' + cat);
   }

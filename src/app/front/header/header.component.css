@@ -14,8 +14,9 @@ a{
 .header{
     /* background: red; */
     box-shadow: 2px 4px 8px -1px rgba(0,0,0,0.20);
-    z-index: 10;
+    z-index: 10000;
     background-color: white;
+
 }
 
 .item{
