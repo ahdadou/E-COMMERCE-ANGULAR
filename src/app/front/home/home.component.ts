@@ -1,6 +1,7 @@
 import { Product } from './../../models/ProductModule';
 import { ProductService } from './../../share/product.service';
 import { Component, OnInit } from '@angular/core';
+import { CartService } from 'src/app/share/cart.service';
 
 @Component({
   selector: 'app-home',
@@ -11,7 +12,7 @@ export class HomeComponent implements OnInit {
   products: Product[];
   url = 'http://localhost:8008/images/products/';
 
-  constructor(private productService: ProductService) { }
+  constructor(private productService: ProductService, private cartservice: CartService) { }
 
   ngOnInit(): void {
     this.fetchData();
@@ -37,6 +38,13 @@ export class HomeComponent implements OnInit {
         console.log(err);
       }
     );
+  }
+
+
+
+
+  addToCart(product): any{
+  this.cartservice.addProduct(product);
   }
 
 

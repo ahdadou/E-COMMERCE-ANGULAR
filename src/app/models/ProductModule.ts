@@ -8,4 +8,5 @@ export interface Product{
     price: number;
     long_description: string;
     update_date: Date;
+
 }

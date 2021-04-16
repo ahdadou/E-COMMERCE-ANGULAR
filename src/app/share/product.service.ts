@@ -3,6 +3,7 @@ import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import {ToastrService} from 'ngx-toastr';
 import { Router } from '@angular/router';
+import { BehaviorSubject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -11,6 +12,7 @@ import { Router } from '@angular/router';
 export class ProductService {
  URL_LO = environment.URL_LOCAL;
   constructor(private http: HttpClient,  private toastr: ToastrService, private router: Router) { }
+
 
   // GET PRODUCT
   getProduct(): any{
