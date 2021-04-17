@@ -1,4 +1,4 @@
-import { CartFrontEnd } from './../models/Cart';
+import { CartFrontEnd, CartLocalStrage } from './../models/Cart';
 import { Product } from './../models/ProductModule';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
@@ -8,6 +8,35 @@ import { ProductService } from './product.service';
   providedIn: 'root',
 })
 export class CartService {
+
+  private cartClient: CartFrontEnd = {
+    count: 0,
+    products: [
+      {
+        product: undefined,
+        qte: 0,
+      },
+    ],
+  };
+  private cartStorage: CartLocalStrage = {
+    count: 0,
+    products: [
+      {
+        id: undefined,
+        qte: 0,
+      },
+    ],
+  };
+
+  total$ = new BehaviorSubject<number>(0);
+  cartService$ = new BehaviorSubject<CartFrontEnd>(this.cartClient);
+
+
+
+
+
+
+
   constructor(private productService: ProductService) {
     let cart = JSON.parse(localStorage.getItem('cart'));
 
@@ -35,27 +64,9 @@ export class CartService {
     this.cartService$.next(this.cartClient);
   }
 
-  cartClient = {
-    count: 0,
-    products: [
-      {
-        product: undefined,
-        qte: 0,
-      },
-    ],
-  };
-  cartStorage = {
-    count: 0,
-    products: [
-      {
-        id: undefined,
-        qte: 0,
-      },
-    ],
-  };
 
-  total$ = new BehaviorSubject<number>(0);
-  cartService$ = new BehaviorSubject<CartFrontEnd>(this.cartClient);
+
+  
 
   // Add Product to client and service Sides
   addProduct(prod: Product): any {
@@ -92,11 +103,39 @@ export class CartService {
     this.cartService$.next(this.cartClient);
   }
 
+
+
+  updateItem(v: boolean, id: number): any{
+    let i = this.cartClient.products.findIndex((p) => p.product.product_id === id);
+    if (v){
+      this.cartClient.products[i].product.quantite
+      ? this.cartClient.products[i].qte++
+      : this.cartClient.products[i].product.quantite;
+    }else{
+      if (this.cartClient.products[i].qte <= 1)
+      {
+this.cartClient.products.splice(i, 1);
+      }
+      else
+      {
+        this.cartClient.products[i].qte--;
+      }
+
+    }
+
+
+    this.cartClient.count = this.cartClient.products.length;
+    this.updateCartInLocalstorage();
+    this.calculeTotal();
+    this.cartService$.next(this.cartClient);
+  }
+
+
   // Remove from cart
 
   removeItem(i: number): any {
     this.cartClient.products.splice(i, 1);
-    if (this.cartClient.products.length == 0) this.cartClient.products = [];
+    if (this.cartClient.products.length === 0) { this.cartClient.products = []; }
     this.cartClient.count = this.cartClient.products.length;
     this.updateCartInLocalstorage();
     this.calculeTotal();
@@ -124,7 +163,7 @@ export class CartService {
   calculeTotal(): any {
     let price = 0;
     this.cartClient.products.forEach(
-      (p) => (price += p.product?.price * p.qte)
+      (p) => (price += p.product.price * p.qte)
     );
     this.total$.next(price);
   }
