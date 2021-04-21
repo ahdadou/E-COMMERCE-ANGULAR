@@ -1,3 +1,4 @@
+import { GuardGuard } from './../share/guard.guard';
 import { CheckoutComponent } from './checkout/checkout.component';
 import { CartComponent } from './cart/cart.component';
 import { OutlerComponent } from './outler/outler.component';
@@ -19,7 +20,7 @@ const routes: Routes = [
     {path: 'register', component: RegisterComponent},
     {path: 'store', component: ProductsComponent},
     {path: 'cart', component: CartComponent},
-    {path: 'checkout', component: CheckoutComponent},
+    {path: 'checkout', component: CheckoutComponent, canActivate: [GuardGuard]},
   ]
 },
 ];

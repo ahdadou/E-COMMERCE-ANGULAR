@@ -10,7 +10,7 @@ import { BehaviorSubject, Observable } from 'rxjs';
 })
 
 export class ProductService {
- URL_LO = environment.URL_LOCAL;
+  URL_LO = environment.URL_LOCAL;
   constructor(private http: HttpClient,  private toastr: ToastrService, private router: Router) { }
 
 

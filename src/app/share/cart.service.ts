@@ -64,10 +64,6 @@ export class CartService {
     this.cartService$.next(this.cartClient);
   }
 
-
-
-  
-
   // Add Product to client and service Sides
   addProduct(prod: Product): any {
     if (
@@ -106,6 +102,7 @@ export class CartService {
 
 
   updateItem(v: boolean, id: number): any{
+
     let i = this.cartClient.products.findIndex((p) => p.product.product_id === id);
     if (v){
       this.cartClient.products[i].product.quantite
@@ -135,7 +132,7 @@ this.cartClient.products.splice(i, 1);
 
   removeItem(i: number): any {
     this.cartClient.products.splice(i, 1);
-    if (this.cartClient.products.length === 0) { this.cartClient.products = []; }
+    if (this.cartClient.products.length == 0) { this.cartClient.products = []; }
     this.cartClient.count = this.cartClient.products.length;
     this.updateCartInLocalstorage();
     this.calculeTotal();

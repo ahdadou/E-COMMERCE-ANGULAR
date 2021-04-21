@@ -1,3 +1,4 @@
+import { ReactiveFormsModule } from '@angular/forms';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
@@ -23,10 +24,13 @@ import { CheckoutComponent } from './checkout/checkout.component';
     RegisterComponent,
     OutlerComponent,
     CartComponent,
-    CheckoutComponent],
+    CheckoutComponent,
+    
+  ],
   imports: [
     CommonModule,
-    FrontRoutingModule
+    FrontRoutingModule,
+    ReactiveFormsModule
   ],
   
 })

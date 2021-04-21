@@ -12,7 +12,7 @@ export class CartLocalStrage{
 export class CartFrontEnd{
     count: number;
     products: [{
-        product: undefined;
+        product: Product,
         qte: number;
     }
     ];

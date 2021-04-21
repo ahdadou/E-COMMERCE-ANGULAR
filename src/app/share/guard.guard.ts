@@ -11,11 +11,11 @@ export class GuardGuard implements CanActivate {
   canActivate(
     next: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): boolean {
-      if (localStorage.getItem('token') != null) {
+      if (localStorage.getItem('token') != null && localStorage.getItem('role') === 'ROLE_USER') {
         return true;
        }
         else {
-          this.router.navigate(['admin/login']);
+          this.router.navigate(['first/login']);
           return true;
        }
   }
