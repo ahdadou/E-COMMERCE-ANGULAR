@@ -1,3 +1,4 @@
+import { Router } from '@angular/router';
 import { OrdersService } from './../../share/orders.service';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
@@ -9,7 +10,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CheckoutComponent implements OnInit {
   myForm: FormGroup;
-  constructor(private fb: FormBuilder,private odersService: OrdersService) { }
+  constructor(private fb: FormBuilder,private odersService: OrdersService, private router: Router) { }
 
   ngOnInit(): void {
     this.createForm();
@@ -30,7 +31,9 @@ export class CheckoutComponent implements OnInit {
 
   goSubmit(){
     this.odersService.addNewOrders(this.myForm.value).subscribe(
-     (res) => console.log(res),
+     (res) => {
+         this.router.navigate(['first/home']);
+      },
      (err) => console.log("error : " + err),
     )
   }

@@ -13,15 +13,31 @@ import { UsersComponent } from './users/users.component';
 
 
 const routes: Routes = [
+  // {path: '', redirectTo: 'login', pathMatch: 'full'},
+  // {path: 'admins', component: AdminsComponent, canActivate: [AdminGuardGuard]},
+  // {path: 'home', component: HomeComponent, canActivate: [AdminGuardGuard]},
+  // {path: 'adminDetails/:id', component: AdmindetailsComponent, canActivate: [AdminGuardGuard]},
+  // {path: 'products', component: ProductsComponent, canActivate: [AdminGuardGuard]},
+  // {path: 'productDetails/:id', component: ProductdetailsComponent, canActivate: [AdminGuardGuard]},
+  // {path: 'users', component: UsersComponent, canActivate: [AdminGuardGuard]},
+  // {path: 'dashboard', component: DashboardComponent, canActivate: [AdminGuardGuard]},
+  // {path: 'userDetails/:id', component: UserdetailsComponent, canActivate: [AdminGuardGuard]},
+  // {path: 'login', component: LoginComponent},
+  
   {path: '', redirectTo: 'login', pathMatch: 'full'},
-  {path: 'admins', component: AdminsComponent, canActivate: [AdminGuardGuard]},
-  {path: 'home', component: HomeComponent, canActivate: [AdminGuardGuard]},
-  {path: 'adminDetails/:id', component: AdmindetailsComponent, canActivate: [AdminGuardGuard]},
-  {path: 'products', component: ProductsComponent, canActivate: [AdminGuardGuard]},
-  {path: 'productDetails/:id', component: ProductdetailsComponent, canActivate: [AdminGuardGuard]},
-  {path: 'users', component: UsersComponent, canActivate: [AdminGuardGuard]},
-  {path: 'dashboard', component: DashboardComponent, canActivate: [AdminGuardGuard]},
-  {path: 'userDetails/:id', component: UserdetailsComponent, canActivate: [AdminGuardGuard]},
+  {
+  path: 'app',
+  canActivate: [AdminGuardGuard],
+  children:[
+    {path: 'admins', component: AdminsComponent},
+    {path: 'home', component: HomeComponent},
+    {path: 'adminDetails/:id', component: AdmindetailsComponent},
+    {path: 'products', component: ProductsComponent},
+    {path: 'productDetails/:id', component: ProductdetailsComponent},
+    {path: 'users', component: UsersComponent},
+    {path: 'dashboard', component: DashboardComponent},
+    {path: 'userDetails/:id', component: UserdetailsComponent},
+  ]},
   {path: 'login', component: LoginComponent},
 ];
 

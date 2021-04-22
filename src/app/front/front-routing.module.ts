@@ -14,10 +14,10 @@ const routes: Routes = [
   {path: 'first',
   component: OutlerComponent,
   children: [
+    {path: 'register', component: RegisterComponent},
     {path: '', redirectTo: '/first/home', pathMatch: 'full'},
     {path: 'home', component: HomeComponent},
     {path: 'login', component: LoginComponent},
-    {path: 'register', component: RegisterComponent},
     {path: 'store', component: ProductsComponent},
     {path: 'cart', component: CartComponent},
     {path: 'checkout', component: CheckoutComponent, canActivate: [GuardGuard]},
